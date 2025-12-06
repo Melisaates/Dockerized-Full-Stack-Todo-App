@@ -1,6 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 
+
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
  // Development için tüm origin’lere izin
@@ -9,6 +10,8 @@ async function bootstrap() {
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
     credentials: true,
   });
+
+  app.setGlobalPrefix('api'); // Tüm rotaların başına /api ekle
 
   await app.listen(3000);
 }
